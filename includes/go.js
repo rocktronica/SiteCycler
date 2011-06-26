@@ -1,11 +1,11 @@
-window.whichone = 0;
-window.cycleduration = parseInt($("#cycleduration").val());
-window.refreshduration = parseInt($("#refreshduration").val());
-window.fired = 0;
+var whichone = 0;
+var cycleduration = parseInt($("#cycleduration").val());
+var refreshduration = parseInt($("#refreshduration").val());
+var fired = 0;
 
 $(document).ready(function(){
-	if (window.fired == 0) {
-		window.fired = 1;
+	if (fired == 0) {
+		fired = 1;
 		$("#nojs").hide();
 	 	$("#nav_links a").live("dblclick", function(event){
 			window.location = $(this).attr("href");
@@ -14,7 +14,7 @@ $(document).ready(function(){
 	 	$("#nav_links a").live("click", function(event){
 	 		$("#nav_links a").removeClass("current");
 	 		$(this).addClass("current");
-	 		window.whichone = $(this).attr("rel");
+	 		whichone = $(this).attr("rel");
 			$('html, body').stop().animate({scrollTop: $("#"+$(this).attr("rel")).offset().top}, 1000);
 			return false;
 		});
@@ -78,21 +78,21 @@ $(document).ready(function(){
 			key = e.which;
 			if (window.holdon != 1) {
 				if ((key == 37) || (key == 38)) {
-					window.whichone--;
-					if (window.whichone < 0) {
-						window.whichone = $("#nav_links a").size()-1;
+					whichone--;
+					if (whichone < 0) {
+						whichone = $("#nav_links a").size()-1;
 					}
-					$("#nav_links a:eq("+window.whichone+")").click();
+					$("#nav_links a:eq("+whichone+")").click();
 					holdon = 1;
 					setTimeout("holdon = 0;", 250);
 					return false;
 				}
 				if ((key == 39) || (key == 40)) {
-					window.whichone++;
-					if (window.whichone > $("#nav_links a").size()-1) {
-						window.whichone = 0;
+					whichone++;
+					if (whichone > $("#nav_links a").size()-1) {
+						whichone = 0;
 					}
-					$("#nav_links a:eq("+window.whichone+")").click();
+					$("#nav_links a:eq("+whichone+")").click();
 					holdon = 1;
 					setTimeout("holdon = 0;", 250);
 					return false;
@@ -105,28 +105,26 @@ $(document).ready(function(){
 });
 
 function SetCycleDuration() {
-	window.cycleduration = parseInt($("#cycleduration").val());
+	cycleduration = parseInt($("#cycleduration").val());
 	if ($("#nav_options_cycle").hasClass("on")) {
 		clearInterval(window.cycletimer);
-		window.cycletimer = setInterval("cycle()", window.cycleduration);
+		window.cycletimer = setInterval("cycle()", cycleduration);
 		cycle();
 	}
 }
 
 function SetRefreshDuration() {
-	window.refreshduration = parseInt($("#refreshduration").val());
+	refreshduration = parseInt($("#refreshduration").val());
 	if ($("#nav_options_refresh").hasClass("on")) {
 		clearInterval(window.refreshtimer);
-		window.refreshtimer = setInterval("refresher()", window.refreshduration);
+		window.refreshtimer = setInterval("refresher()", refreshduration);
 		refresher();
 	}
 }
 
 function MakePanels() {
 	$("#nav_links a").each(function(i, val) {
-//		varslug = slug($(this).html());
 		$("body").append("<iframe src='" + $(this).attr("href") + "' id='" + i + "' class='loading' onload='iFrameLoaded("+ i +")' scrolling='no'></iframe>");
-//		$(this).attr("href","#" + i); // .attr("href","#"+varslug)
 		$("#" + i).css("top", (i*100) + "%");
 	});
 }
@@ -171,10 +169,8 @@ function slidenav() {
 function cycle() {
 	if ($("#nav_options_cycle").hasClass("on")) {
 		progresswhichone();
-//		$("#black").fadeIn(500, function() {
-			$("#nav_links a:eq("+window.whichone+")").click();
-			$("#timerbar_progress").stop().width(0).animate({"width": "100%"}, window.cycleduration);
-//		}).fadeOut(500);
+		$("#nav_links a:eq("+whichone+")").click();
+		$("#timerbar_progress").stop().width(0).animate({"width": "100%"}, cycleduration);
 	} else {
 		clearInterval(cycletimer);
 	}
@@ -191,15 +187,14 @@ function refresher() {
 }
 
 function progresswhichone() {
-	currentone = window.whichone;
+	currentone = whichone;
 	if ($("#nav_options_random").hasClass("on")) {
-		//alert("randomizing!");
-		while (window.whichone == currentone) {
-			window.whichone = Math.floor(Math.random()*($("#nav_links a").size()));
+		while (whichone == currentone) {
+			whichone = Math.floor(Math.random()*($("#nav_links a").size()));
 		}
 	} else {		
-		window.whichone++;
-		if (window.whichone > ($("#nav_links a").size()-1)) { window.whichone = 0 };
+		whichone++;
+		if (whichone > ($("#nav_links a").size()-1)) { whichone = 0 };
 	}
 }
 

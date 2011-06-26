@@ -7,8 +7,6 @@
 		foreach ($u as $i => $url) {
 			echo "<li><a href='".$url."' rel='".$i."'><img src='http://getfavicon.appspot.com/".$url."?defaulticon=http://sitecycler.com/images/blankfavicon.png' alt='".$t[$i]."' width='16' height='16' />".$t[$i]."</a></li>\n";
 			$footercookie = $footercookie."<a href='".$url."'>".$t[$i]."</a> ";
-//			$urlparse = parse_url($url);
-//			echo "<li><a href='".$url."' rel='".$i."'><img src='http://www.google.com/s2/favicons?domain=".$urlparse["host"]."' alt='".$t[$i]."' width='16' height='16' />".$t[$i]."</a></li>\n";
 		}
 		setcookie("footercookie", $footercookie, (30 * 60 * 24 * 60 + time())); ?>
 	</ul>

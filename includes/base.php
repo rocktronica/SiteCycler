@@ -2,9 +2,6 @@
 
 // if (!isset($_GET["debug"])) { exit("Come back later. kthnxbai."); }
 
-//phpinfo();
-//exit();
-
 function pagetitle() {
 	$page = page();
 	switch ($page) {
