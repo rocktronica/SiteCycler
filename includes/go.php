@@ -1,14 +1,11 @@
 <div id="nav">
 	<h1><a href="/">SiteCycler</a></h1>
 	<ul id="nav_links">
-		<?php $footercookie = "";
-		$u = explode(",", $_GET["u"]);
+		<?php $u = explode(",", $_GET["u"]);
 		$t = explode(",", $_GET["t"]);
 		foreach ($u as $i => $url) {
-			echo "<li><a href='".$url."' rel='".$i."'><img src='http://getfavicon.appspot.com/".$url."?defaulticon=http://sitecycler.com/images/blankfavicon.png' alt='".$t[$i]."' width='16' height='16' />".$t[$i]."</a></li>\n";
-			$footercookie = $footercookie."<a href='".$url."'>".$t[$i]."</a> ";
-		}
-		setcookie("footercookie", $footercookie, (30 * 60 * 24 * 60 + time())); ?>
+			echo "<li><a href='".$url."' rel='".$i."'><img src='http://getfavicon.appspot.com/".$url."?defaulticon=http%3A%2F%2Fsitecycler.com%2Fimages%2Fblankfavicon.png' alt='".$t[$i]."' width='16' height='16' />".$t[$i]."</a></li>\n";
+		} ?> 
 	</ul>
 	<p class="nomargin"><a href="#" class="updown" rel="more">Options</a></p>
 	<div id="more" class="hidden">

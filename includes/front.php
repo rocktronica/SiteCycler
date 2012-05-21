@@ -15,4 +15,5 @@
 	<li>Retail monitor display kiosks</li>
 </ul>
 <p>SiteCycler runs best in Chrome but does just fine in Firefox, Chrome, and Opera. No active support for Internet Explorer, but you're more than welcome to try it.</p>
+<p>Source on <a href="https://github.com/rocktronica/SiteCycler">GitHub</a>. GPL licensed.</p>
 <?php include "includes/footer.php" ?>

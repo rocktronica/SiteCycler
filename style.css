@@ -448,13 +448,6 @@ li.item a.move { margin-right: 0; }
 
 #footer p { margin: 0 0 10px 0; }
 
-#footer #footercookie {
-	position: absolute;
-	top: -100px;
-}
-
-#footer .adsense { margin-left: -4px; }
-
 /* --- forms -- */
 
 .button {
